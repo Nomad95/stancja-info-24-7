@@ -1,0 +1,52 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div class="column col-10 col-mx-auto">
+            <h3 class="text-center">Internet</h3>
+            <br/>
+            <div class="divider text-center"></div>
+            {% if internet_entries %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Rok</th>
+                        <th>Miesiąc</th>
+                        <th>Kwota</th>
+                        <th>Data zapłaty</th>
+                        <th>Kara</th>
+                        <th>Edytuj</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entry in internet_entries %}
+                        <tr>
+                            <td>{{ entry.id }}</td>
+                            <td>{{ entry.year }}</td>
+                            <td>{{ entry.month.name }}</td>
+                            <td>{{ entry.payment_amount }}</td>
+                            <td>{{ entry.date_of_payment }}</td>
+                            <td>{{ entry.penalty }}</td>
+                            <td>
+                                <button class="btn btn-primary">Edytuj</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            {% else %}
+                <div class="empty">
+                    <div class="empty-icon">
+                        <i class="icon icon-stop"></i>
+                    </div>
+                    <p class="empty-title h5">Brak danych</p>
+                    <p class="empty-subtitle">Nie ma jeszcze żadnych wpisów</p>
+                    <div class="empty-action">
+                        <button class="btn btn-primary">Dodaj wpis</button>
+                    </div>
+                </div>
+            {% endif %}
+        <div class="divider text-center"></div>
+    </div>
+{% endblock content %}

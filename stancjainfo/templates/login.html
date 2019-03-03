@@ -1,0 +1,55 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div>
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label(class="form-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.username(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.password(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                        <label class="form-checkbox">
+                            {{ form.remember(class="checkbox") }}
+                            <i class="form-icon"></i>Zapamiętaj mnie
+                        </label>
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn") }}
+                </div>
+            </form>
+        </div>
+        <hr/>
+
+    </div>
+    <div class="columns">
+        <div>
+            Nie masz konta? <a href="{{ url_for('register') }}">Zarejestruj się</a> {#name of route function!#}
+        </div>
+    </div>
+{% endblock content %}

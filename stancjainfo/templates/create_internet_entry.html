@@ -1,0 +1,90 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div>
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.year.label(class="form-label") }}
+
+                    {% if form.year.errors %}
+                        {{ form.year(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.year.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.year(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.month.label(class="form-label") }}
+
+                    {% if form.month.errors %}
+                        {{ form.month(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.month.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.month(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.payment_amount.label(class="form-label") }}
+
+                    {% if form.payment_amount.errors %}
+                        {{ form.payment_amount(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.payment_amount.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.payment_amount(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.date_of_payment.label(class="form-label") }}
+
+                    {% if form.date_of_payment.errors %}
+                        {{ form.date_of_payment(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.date_of_payment.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.date_of_payment(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.penalty.label(class="form-label") }}
+
+                    {% if form.penalty.errors %}
+                        {{ form.penalty(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.penalty.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.penalty(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn") }}
+                </div>
+            </form>
+        </div>
+        <hr/>
+
+    </div>
+{% endblock content %}

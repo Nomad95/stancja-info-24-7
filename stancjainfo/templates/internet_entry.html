@@ -1,0 +1,69 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div class="column col-10 col-mx-auto">
+            <h3 class="text-center">Internet</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td ><strong>Rok</strong></td>
+                        <td class="text-center">{{ internet_entry.year }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mies</strong></td>
+                        <td class="text-center">{{ internet_entry.month.name }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kwota</strong></td>
+                        <td class="text-center">{{ internet_entry.payment_amount }} zł</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Na głowę</strong></td>
+                        <td class="text-center">{{ per_capita }} zł</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Termin zapłaty </strong></td>
+                        <td class="text-center">{{ internet_entry.date_of_payment }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kara</strong></td>
+                        <td class="text-center">{{ internet_entry.penalty }} zł</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="divider text-center"></div>
+
+        </div>
+        {% if payments %}
+        <div class="column col-10 col-mx-auto">
+            <h3 class="text-center">Zapłacili</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Pozostała kwota</th>
+                    <th>Ile już zapłacił</th>
+                    <th>kiedy zapłacił</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.user_id }}</td>
+                        <td>{{ payment.remaining_amount }}</td>
+                        <td>{{ payment.already_paid_amount }}</td>
+                        <td>{{ payment.payment_accepted_date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+{% endblock content %}

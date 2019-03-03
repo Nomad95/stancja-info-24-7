@@ -1,0 +1,32 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div class="column col-10 col-mx-auto">
+            {% if title %}
+                <h2>{{ current_user.username }} {{ title }}</h2>
+            {% else %}
+                <h2>{{ current_user.username }}POSTS:</h2>
+            {% endif %}
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.content }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stancja Info 24/7</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+
+
+<div class="container">
+    <header class="navbar ">
+        <section class="navbar-section">
+            <a href="{{ url_for('hello_world') }}" class="almost-white navbar-brand mr-2">StancjaInfo 24/7</a>
+            <a href="{{ url_for('internet') }}" class="btn btn-link ">Internet</a>
+            <a href="..." class="btn btn-link ">Media</a>
+        </section>
+        <section class="navbar-section">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('test') }}" class="btn btn-link ">Test</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-link ">Wyloguj</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-link ">Zaloguj</a>
+                <a href="{{ url_for('register') }}" class="btn btn-link ">Zarejestruj</a>
+            {% endif %}
+        </section>
+    </header>
+    <br />
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="toast toast-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <br />
+    {% block content %}
+    {% endblock %}
+    <br />
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div>
+            <form method="POST" action="" novalidate> {# same route#}
+                {{ form.hidden_tag() }} {# CSRF token#}
+                <div class="form-group">
+                    {{ form.title.label(class="form-label") }}
+
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.title(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-label") }}
+
+                    {% if form.content.errors %}
+                        {{ form.content(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.content(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn") }}
+                </div>
+            </form>
+        </div>
+        <hr/>
+
+    </div>
+{% endblock content %}
