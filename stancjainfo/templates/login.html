@@ -1,7 +1,9 @@
 {% extends "container-layout.html" %}
 {% block content %}
     <div class="columns">
-        <div>
+        <div class="column col-4 ">
+        </div>
+        <div class="column col-4">
             <form method="POST" action="" novalidate>
                 {{ form.hidden_tag() }}
                 <div class="form-group">
@@ -10,9 +12,9 @@
                     {% if form.username.errors %}
                         {{ form.username(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.username.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
@@ -24,32 +26,48 @@
                     {% if form.password.errors %}
                         {{ form.password(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
                         {{ form.password(class="form-input") }}
                     {% endif %}
                 </div>
-                <div class="form-group">
-                        <label class="form-checkbox">
-                            {{ form.remember(class="checkbox") }}
-                            <i class="form-icon"></i>Zapamiętaj mnie
-                        </label>
+                <br />
+                <div class="columns">
+                    <div class="col-8 text-left">
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                {{ form.remember(class="checkbox") }}
+                                <i class="form-icon"></i>Zapamiętaj mnie
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4 text-right">
+                        <div class="form-group">
+                            {{ form.submit(class="btn") }}
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    {{ form.submit(class="btn") }}
-                </div>
+
+
             </form>
         </div>
-        <hr/>
-
+        <div class="column col-4 ">
+        </div>
     </div>
     <div class="columns">
-        <div>
-            Nie masz konta? <a href="{{ url_for('register') }}">Zarejestruj się</a> {#name of route function!#}
+        <div class="column col-4">
+        </div>
+        <div class="column col-4 text-center">
+            <br/>
+            <span >
+                Nie masz konta? <a href="{{ url_for('register') }}">Zarejestruj się</a>
+            </span>
+        </div>
+    <div class="column col-4">
         </div>
     </div>
 {% endblock content %}

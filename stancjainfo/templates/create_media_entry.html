@@ -1,0 +1,167 @@
+{% extends "container-layout.html" %}
+{% block content %}
+    <div class="columns">
+        <div>
+            <form method="POST" action="" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.year.label(class="form-label") }}
+
+                    {% if form.year.errors %}
+                        {{ form.year(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.year.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.year(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.month.label(class="form-label") }}
+
+                    {% if form.month.errors %}
+                        {{ form.month(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.month.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.month(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.payment_amount.label(class="form-label") }}
+
+                    {% if form.payment_amount.errors %}
+                        {{ form.payment_amount(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.payment_amount.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.payment_amount(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.cold_water_kitchen.label(class="form-label") }}
+
+                    {% if form.cold_water_kitchen.errors %}
+                        {{ form.cold_water_kitchen(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.cold_water_kitchen.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.cold_water_kitchen(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.warm_water_kitchen.label(class="form-label") }}
+
+                    {% if form.warm_water_kitchen.errors %}
+                        {{ form.warm_water_kitchen(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.warm_water_kitchen.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.warm_water_kitchen(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.cold_water_bathroom.label(class="form-label") }}
+
+                    {% if form.cold_water_bathroom.errors %}
+                        {{ form.cold_water_bathroom(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.cold_water_bathroom.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.cold_water_bathroom(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.warm_water_bathroom.label(class="form-label") }}
+
+                    {% if form.warm_water_bathroom.errors %}
+                        {{ form.warm_water_bathroom(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.warm_water_bathroom.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.warm_water_bathroom(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.current.label(class="form-label") }}
+
+                    {% if form.current.errors %}
+                        {{ form.current(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.current.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.current(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.gas.label(class="form-label") }}
+
+                    {% if form.gas.errors %}
+                        {{ form.gas(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.gas.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.gas(class="form-input") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.current_refund.label(class="form-label") }}
+
+                    {% if form.current_refund.errors %}
+                        {{ form.current_refund(class="form-input is-error") }}
+                        <p class="form-input-hint">
+                            {% for error in form.current_refund.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </p>
+                    {% else %}
+                        {{ form.current_refund(class="form-input") }}
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group">
+                    {{ form.submit(class="btn") }}
+                </div>
+            </form>
+        </div>
+        <hr/>
+
+    </div>
+{% endblock content %}

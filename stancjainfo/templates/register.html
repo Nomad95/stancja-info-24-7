@@ -1,7 +1,9 @@
 {% extends "container-layout.html" %}
 {% block content %}
     <div class="columns">
-        <div>
+        <div class="column col-4 ">
+        </div>
+        <div class="column col-4">
             <form method="POST" action="" novalidate> {# same route#}
                 {{ form.hidden_tag() }} {# CSRF token#}
                 <div class="form-group">
@@ -10,9 +12,9 @@
                     {% if form.username.errors %}
                         {{ form.username(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.username.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
@@ -25,9 +27,9 @@
                     {% if form.name.errors %}
                         {{ form.name(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.name.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
@@ -40,9 +42,9 @@
                     {% if form.surname.errors %}
                         {{ form.surname(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.surname.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.surname.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
@@ -54,9 +56,9 @@
                     {% if form.email.errors %}
                         {{ form.email(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
@@ -68,9 +70,9 @@
                     {% if form.password.errors %}
                         {{ form.password(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
@@ -82,26 +84,36 @@
                     {% if form.confirm_password.errors %}
                         {{ form.confirm_password(class="form-input is-error") }}
                         <p class="form-input-hint">
-                        {% for error in form.confirm_password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
 
                         </p>
                     {% else %}
                         {{ form.confirm_password(class="form-input") }}
                     {% endif %}
                 </div>
-                <div class="form-group">
+                <div class="form-group text-right">
                     {{ form.submit(class="btn") }}
                 </div>
             </form>
+        </div>
+        <div class="column col-4 ">
         </div>
         <hr/>
 
     </div>
     <div class="columns">
-        <div>
+        <div class="column col-4">
+        </div>
+        <div class="column col-4 text-center">
+            <br/>
+            <span>
             Masz już konto? <a href="{{ url_for('login') }}">Zaloguj się</a> {#name of route function!#}
+            </span>
+        </div>
+        <div class="column col-4">
         </div>
     </div>
+
 {% endblock content %}
