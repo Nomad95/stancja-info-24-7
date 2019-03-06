@@ -4,8 +4,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 
 from stancjainfo import app, db, bcrypt
-from stancjainfo.forms import RegistrationForm, LoginForm, PostForm, InternetEntryForm
-from stancjainfo.models import User, Post, InternetEntry
+from stancjainfo.forms import RegistrationForm, LoginForm, PostForm, InternetEntryForm, MediaEntryForm
+from stancjainfo.models import User, Post, InternetEntry, MediaEntry
 
 
 @app.route('/')
@@ -18,6 +18,12 @@ def hello_world():
 def test():
     posts = Post.query.all()
     return render_template('test.html', posts=posts, title='Superposts!')
+
+
+@app.route('/whats-new')
+@login_required
+def whats_new():
+    return render_template('whats_new.html')
 
 
 def is_current_user_an_admin():
@@ -125,7 +131,6 @@ def admin_internet():
     if not is_current_user_an_admin:
         return redirect(url_for('hello_world'))
     internet_entries = InternetEntry.query.all()
-    print(internet_entries)
     return render_template('admin_internet.html', internet_entries=internet_entries)
 
 
@@ -159,6 +164,40 @@ def show_internet_entry(entry_id):
                            payments=payments)
 
 
+@app.route('/adminpanel/media')
+@login_required
+def admin_media():
+    if not is_current_user_an_admin:
+        return redirect(url_for('hello_world'))
+    media_entries = MediaEntry.query.all()
+    return render_template('admin_media.html', media_entries=media_entries)
+
+
+@app.route('/adminpanel/media/new', methods=['GET', 'POST'])
+@login_required
+def admin_add_media_entry():
+    if not is_current_user_an_admin:
+        return redirect(url_for('hello_world'))
+    form = MediaEntryForm()
+    if form.validate_on_submit():
+        media_entry = MediaEntry(
+            month=form.month.data,
+            year=form.year.data,
+            payment_amount=form.payment_amount.data,
+            cold_water_kitchen=form.cold_water_kitchen.data,
+            warm_water_kitchen=form.warm_water_kitchen.data,
+            cold_water_bathroom=form.cold_water_bathroom.data,
+            warm_water_bathroom=form.warm_water_bathroom.data,
+            current=form.current.data,
+            gas=form.gas.data,
+            current_refund=form.current_refund.data)
+        db.session.add(media_entry)
+        db.session.commit()
+        flash('Wpis został utworzony', 'success')
+        return redirect(url_for('admin_media'))
+    return render_template('create_media_entry.html', form=form)
+
+
 @app.route('/internet')
 @login_required
 def internet():
@@ -167,3 +206,11 @@ def internet():
     per_capita = internet_entry.payment_amount / 5
     return render_template('internet_entry.html', internet_entry=internet_entry, per_capita=per_capita,
                            payments=payments)
+
+
+@app.route('/media')
+@login_required
+def media():
+    media_entry = MediaEntry.query.order_by(MediaEntry.year.desc(), MediaEntry.month.desc()).first()
+    per_capita = (media_entry.payment_amount - media_entry.current_refund) / 5
+    return render_template('media_entry.html', media_entry=media_entry, per_capita=per_capita)

@@ -73,3 +73,17 @@ class InternetPayment(db.Model):
     payment_accepted_date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     internet_entry_id = db.Column(db.Integer, db.ForeignKey('internet_entry.id'), nullable=False)
+
+
+class MediaEntry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    month = db.Column(db.Enum(Months), nullable=False)
+    year = db.Column(db.String, nullable=False)
+    payment_amount = db.Column(db.Float(precision='4,2'), nullable=False)
+    cold_water_kitchen = db.Column(db.Float(precision='4,2'), nullable=False)
+    warm_water_kitchen = db.Column(db.Float(precision='4,2'), nullable=False)
+    cold_water_bathroom = db.Column(db.Float(precision='4,2'), nullable=False)
+    warm_water_bathroom = db.Column(db.Float(precision='4,2'), nullable=False)
+    current = db.Column(db.Float(precision='4,2'), nullable=False)
+    gas = db.Column(db.Float(precision='4,2'), nullable=False)
+    current_refund = db.Column(db.Float(precision='4,2'), nullable=False)

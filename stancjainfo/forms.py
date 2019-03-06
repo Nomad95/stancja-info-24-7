@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextA
     DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
-from stancjainfo.models import User, InternetEntry
+from stancjainfo.models import User, InternetEntry, MediaEntry
 
 
 class RegistrationForm(FlaskForm):
@@ -73,5 +73,40 @@ class InternetEntryForm(FlaskForm):
 
     def validate_month(self, month):
         entry = InternetEntry.query.filter_by(month=month.data, year=int(self.year.data)).first()
+        if entry:
+            raise ValidationError('Entry for that month already exists')
+
+
+class MediaEntryForm(FlaskForm):
+    month = SelectField('Miesiąc', validators=[DataRequired()], coerce=str, choices=[
+        ('JAN', 'Styczeń'),
+        ('FEB', 'Luty'),
+        ('MAR', 'Marzec'),
+        ('APR', 'Kwiecień'),
+        ('MAY', 'Maj'),
+        ('JUN', 'Czerwiec'),
+        ('JUL', 'Lipiec'),
+        ('AUG', 'Sierpień'),
+        ('SEP', 'Wrzesień'),
+        ('OCT', 'Październik'),
+        ('NOV', 'Listopad'),
+        ('DEC', 'Grudzień')])
+    year = SelectField('Rok', validators=[DataRequired()], coerce=int, choices=[
+        (2017, '2017'),
+        (2018, '2018'),
+        (2019, '2019'),
+        (2020, '2020')])
+    payment_amount = DecimalField('Należność', validators=[DataRequired()], places=2)
+    cold_water_kitchen = DecimalField('Zimna woda kuchnia', validators=[DataRequired()])
+    warm_water_kitchen = DecimalField('Ciepła woda kuchnia', validators=[DataRequired()])
+    cold_water_bathroom = DecimalField('Zimna woda łazienka', validators=[DataRequired()])
+    warm_water_bathroom = DecimalField('Ciepła woda łazienka', validators=[DataRequired()])
+    current = DecimalField('Prąd', validators=[DataRequired()])
+    gas = DecimalField('Gaz', validators=[DataRequired()])
+    current_refund = DecimalField('Zwrot za prąd', validators=[DataRequired()])
+    submit = SubmitField('Dodaj')
+
+    def validate_month(self, month):
+        entry = MediaEntry.query.filter_by(month=month.data, year=int(self.year.data)).first()
         if entry:
             raise ValidationError('Entry for that month already exists')
